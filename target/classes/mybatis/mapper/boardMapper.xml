@@ -4,13 +4,13 @@
 <mapper namespace="org.zerock.mapper.BoardMapper">
 
 	<insert id="create">
-		insert into tb1_board(title,content,writer) 
+		insert into tbl_board(title,content,writer) 
 		value(#{title},#{content},#{writer})
 	</insert>
 	
 	<select id="read" resultType="board">
 		select bno,title,content,writer,regdate,viewcnt from
-		tb1_board where bno= #{bno}
+		tbl_board where bno= #{bno}
 	</select>
 	
 	<update id="update">
@@ -25,7 +25,7 @@
 	<select id="listAll" resultType="board">
 	<![CDATA[
 		select bno, title, content, writer, regdate, viewcnt 
-		form tb1_board where bno > 0 order by bno desc, regdate desc
+		form tbl_board where bno > 0 order by bno desc, regdate desc
 		
 	]]>
 	

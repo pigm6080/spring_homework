@@ -16,35 +16,36 @@ public class BoardDAOImpl implements BoardDAO{
 	@Autowired
 	private final SqlSessionTemplate sql;
 	
+	private static String namespace = "org.zerock.mapper.BoardMapper";
 	@Override
 	public void create(BoardVO vo) throws Exception {
 		System.out.println("Create boardVO = " + vo);
-		sql.insert("org.zerock.mapper.BoardMapper.create",vo);
+		sql.insert( namespace +".create",vo);
 		
 	}
 
 	@Override
 	public BoardVO read(long bno) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("Read boardVO = " + bno);
+		return sql.selectOne(namespace + ".read" , bno);
 	}
 
 	@Override
 	public void update(BoardVO vo) throws Exception {
-		// TODO Auto-generated method stub
-		
+		System.out.println("update boardVO = " + vo);
+		sql.update(namespace + ".update" , vo);
 	}
 
 	@Override
 	public void delete(Long bno) throws Exception {
-		// TODO Auto-generated method stub
+		sql.delete(namespace+".delete", bno);
 		
 	}
 
 	@Override
 	public List<BoardVO> listAll() throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return sql.selectList(namespace+".listAll");
 	}
 
 }

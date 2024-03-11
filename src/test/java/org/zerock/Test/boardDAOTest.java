@@ -27,5 +27,21 @@ public class boardDAOTest {
 		board.setWriter("user112");
 		dao.create(board);
 	}
+	@Test
+	public void testRead() throws Exception {
+		log.info(dao.read(1).toString());
+	}
+	@Test
+	public void testUpdate() throws Exception {
+		BoardVO board = new BoardVO();
+		board.setBno(1);
+		board.setTitle("수정된글입니다.");
+		board.setContent (" 수정테스트" );
+		dao.update(board);
+	}
+	@Test
+	public void testDelete() throws Exception{
+		dao.delete((long) 1);
+	}
 
 }
