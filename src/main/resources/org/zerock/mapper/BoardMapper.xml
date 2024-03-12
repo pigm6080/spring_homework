@@ -21,5 +21,21 @@
 	    values (#{title}, #{content}, #{writer})	
 	    </insert>
 	
+	<select id = "read" resultType="org.zerock.domain.BoardVO">
+		select * from tbl_board where bno = #{bno}
+	</select>
+	
+	<delete id = "delete">
+		delete from tbl_board where bno = #{bno}
+	</delete>
+	
+		<update id="update" parameterType="org.zerock.domain.BoardVO">
+			update tbl_board
+      	  set title = #{title},
+            content = #{content},
+            writer = #{writer},
+            updateDate = now()
+        where bno = #{bno}
+	</update>
 	
 </mapper>
