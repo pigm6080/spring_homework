@@ -22,7 +22,7 @@
 		        (SELECT @rownum := 0) AS rn_init
 		    ) AS numbered_board
 		WHERE 
-		    rn > (#{pageNum}-1) LIMIT #{amount}
+		    rn > (#{pageNum}-1)*10 LIMIT #{amount}
 		]]>
 
     </select>
