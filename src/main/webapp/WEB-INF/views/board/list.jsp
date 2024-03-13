@@ -11,13 +11,15 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                            BoardList Page
                         </div>
-                         <button id="regBtn" type="button" class="btn btn-xs pull-right">Register New Board</button>
+                         <button id="regBtn" type="button" class="btn btn-xs pull-right" 
+                         onclick="window.location.href = '/board/register';">Register New Board</button>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover">
@@ -30,6 +32,17 @@
                                         <th>수정일</th>
                                     </tr>
                                 </thead>
+                                
+                                <c:forEach items="${list}" var="board">
+                                	<tr>
+                                		<td><c:out value="${board.bno }" /></td>
+                                		<td><c:out value="${board.title }" /></td>
+                                		<td><c:out value="${board.writer }" /></td>
+                                		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regDate }"/></td>
+                                		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updatedate }"/></td>
+                                	</tr>
+                                
+                                </c:forEach>
                                 
                                 
                                 
