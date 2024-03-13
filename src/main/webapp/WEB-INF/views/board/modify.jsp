@@ -22,8 +22,13 @@
             } else if (operation === 'list') {
                 // 페이지 이동을 위해 window.location 사용합니다.
              	 formObj.attr("action", "/board/list").attr("method", "get");
+                var pageNumTag = $("input[name='pageNum']").clone();
+                var amountTag = $("input[name='amount']").clone();
+                
              	formObj.empty();
-                return;
+             	formObj.append(pageNumTag);
+             	formObj.append(amountTag);
+             	
             }
 
             formObj.submit();
