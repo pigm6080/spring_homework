@@ -90,10 +90,14 @@
 	    	   
 	    	   checkModal(result);
 	    	   
-	       //model 출력되게 하는 메서드
+	       		history.replaceState({},null,null);
+	    	   
+	    	   //model 출력되게 하는 메서드
+	       
+	       
 	    	   function checkModal(result){
 	    		   
-	    		   if(result === ''){
+	    		   if(result === '' || history.state){
 	    			   return;
 	    		   }
 	    		   
@@ -107,7 +111,7 @@
 	       		$("#regBtn").on("click", function(){
 	       			
 	       			self.location = "/board/register";
-	       		})
+	       		});
 	    	   
 	       });
 	       //addFlashAttribute()로 저장한다.
