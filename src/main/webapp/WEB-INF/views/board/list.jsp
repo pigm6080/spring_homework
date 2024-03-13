@@ -17,9 +17,8 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                            BoardList Page
+                         <button id="regBtn" type="button" class="btn btn-xs pull-right">Register New Board</button>
                         </div>
-                         <button id="regBtn" type="button" class="btn btn-xs pull-right" 
-                         onclick="window.location.href = '/board/register';">Register New Board</button>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover">
@@ -44,13 +43,33 @@
                                 
                                 </c:forEach>
                                 
-                                
-                                
-                                
-                                
-                                
-
                                 </table>
+                                
+                                <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                        처리가 완료되었습니다.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            <!-- /.modal -->
+                                
+                                
+                                
+                                
                             </div>
                             <!-- /.table-responsive -->
                         </div>
@@ -59,6 +78,37 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-6 -->
+       <script type="text/javascript">
+		   // 중복입력맏아주는메서드	
+	       $(document).ready(function(){
+	    	   var result ='<c:out value="${result}"/>';
+	    	   
+	    	   checkModal(result);
+	    	   
+	       //model 출력되게 하는 메서드
+	    	   function checkModal(result){
+	    		   
+	    		   if(result === ''){
+	    			   return;
+	    		   }
+	    		   
+	    		   if(parseInt(result) > 0){
+	    			   $(".modal-body").html("게시글 " + parseInt(result) + "빈이 등록되었습니다.");
+	    		   }
+	    		   
+	    		   $("#myModal").modal("show");
+	    	   }
+	       
+	       		$("#regBtn").on("click", function(){
+	       			
+	       			self.location = "/board/register";
+	       		})
+	    	   
+	       });
+	       //addFlashAttribute()로 저장한다.
+	       
+	       
+       </script>
 
         
      <%@include file = "../includes/footer.jsp" %>
