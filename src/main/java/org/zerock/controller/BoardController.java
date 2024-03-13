@@ -54,7 +54,7 @@ public class BoardController {
 		
 		model.addAttribute("board",service.get(bno));
 		
-		log.info("/get 성공");
+		log.info("/get ,modify 성공");
 	}
 	
 	@PostMapping("/modify") //RedirectAttributes리다이렉트후에도 데이터를 유지랑수 있도록하는인터페이스다
