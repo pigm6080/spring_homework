@@ -24,10 +24,14 @@
              	 formObj.attr("action", "/board/list").attr("method", "get");
                 var pageNumTag = $("input[name='pageNum']").clone();
                 var amountTag = $("input[name='amount']").clone();
+                var keywordTag = $("input[name='keyword']").clone();
+                var typeTag = $("input[name='type']").clone();
                 
              	formObj.empty();
              	formObj.append(pageNumTag);
              	formObj.append(amountTag);
+             	formObj.append(keywordTag);
+             	formObj.append(typeTag);
              	
             }
 			//이걸 주석 처리 해야한다. 나중에 주석 뺴고그전에 위에 코드로 인해form post 값이 바뀌는 지 봐야한다. 
@@ -55,6 +59,8 @@
 				<form action="/board/modify" method="post" role="form">
 					<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"/>'>
 					<input type="hidden" name="amount" value='<c:out value="${cri.amount }"/>'>
+					<input type="hidden" name="type" value='<c:out value="${cri.type }"/>'>
+					<input type="hidden" name="keyword" value='<c:out value="${cri.keyword }"/>'>
 					
 				<div class="form-group">
 					<label>Bno</label><input class="form-control" name='bno'
