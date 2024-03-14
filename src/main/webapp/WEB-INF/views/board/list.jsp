@@ -56,6 +56,10 @@
 
 				</table>
 				
+				
+				
+				
+				
 					<div class="pull-right">
 	                	<ul class="pagination">
 	                		<c:if test="${pageMaker.prev}">
@@ -102,7 +106,13 @@
 									aria-hidden="true">&times;</button>
 								<h4 class="modal-title" id="myModalLabel">Modal title</h4>
 							</div>
-							<div class="modal-body">처리가 완료되었습니다.</div>
+							<div class="modal-body">
+							
+							<p>
+							처리가 완료되었습니다.
+							</p>
+							
+							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal">Close</button>
@@ -127,53 +137,67 @@
 </div>
 <!-- /.col-lg-6 -->
 <script type="text/javascript">
-		   // 중복입력맏아주는메서드	
+		   // 문서가 완전히 로드 되면 실행되는 함수 정의
 	       $(document).ready(function(){
+	    	   
 	    	   var result ='<c:out value="${result}"/>';
-	    	   
+	    	   //result 값을 가져와서 전달
 	    	   checkModal(result);
-	    	   
+			   //checkModal에 전달	    	   
 	       		history.replaceState({},null,null);
-	    	   
+	    	   //리로드하지 않고 이전페이지로 돌아갈수있게 해준다.
 	    	   //model 출력되게 하는 메서드
-	       
+	       		
+
 	       
 	    	   function checkModal(result){
 	    		   
 	    		   if(result === '' || history.state){
+	    			   //값이 비어있거나 블우저 이전 상태 있는경우 함수종료
 	    			   return;
 	    		   }
 	    		   
 	    		   if(parseInt(result) > 0){
+	    			   //result 값이 양수이면 model창 메세지 출력
 	    			   $(".modal-body").html("게시글 " + parseInt(result) + "빈이 등록되었습니다.");
 	    		   }
 	    		   
+	    		   //모달창화면에 출력
 	    		   $("#myModal").modal("show");
 	    	   }
+	    	   
+	    	   
 	       
 	       		$("#regBtn").on("click", function(){
 	       			
 	       			self.location = "/board/register";
+	       			//regBtn 요소 클릭시 /board/register페이지로 이동
 	       		});
 	       		
 	       		var actionForm = $("#actionForm");
+	       		
 	       		
 	       		$(".paginate_button a").on("click" , function(e){
 	       			e.preventDefault();
 	       			
 	       			console.log('click');
 	       			
-	       			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+	       			actionForm.find("input[name='pageNum']") // name = pageNum 인걸 찾아서
+	       								.val($(this).attr("href")); //페이지 링크의 href 속성값을 가져온다.
+	       								//.val은 input요소의 값을 변경한다.
 	       			actionForm.submit();
 	       		});
+	       		
 	       		
 	       		$(".move").on("click",function(e){
 	       			e.preventDefault();
 	       			
-	       			actionForm.append("<input type='hidden' name='bno' value='"+
-	       				$(this).attr("href")+"'>");
+	       			actionForm.append("<input  name='bno' value='"+$(this).attr("href")+"'>");
+	       			//input hidden 값을 설정한다.
 	       			actionForm.attr("action","/board/get");
+	       			//action 속성을 /board.get으로 이동하도록 설정한다.
 	       			actionForm.submit();
+	       			// 다음페이지로 이동시킨다.
 	       		});
 	       			
 	       			
@@ -184,6 +208,9 @@
 	       
 	       
        </script>
+
+		
+
 
 
 <%@include file="../includes/footer.jsp"%>

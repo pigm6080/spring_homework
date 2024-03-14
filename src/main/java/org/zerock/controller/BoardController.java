@@ -32,19 +32,25 @@ public class BoardController {
 	public void list(Criteria cri, Model model) {
 		
 		log.info("list" + cri);
+		//여기서 전체 데이터를 대상으로 검색하기 떄문에 페이지 로드에 오래걸리걸로 예상된다..
 		model.addAttribute("list",service.getList(cri));
+		
+		log.info(service.getList(cri));
 		///model.addAttribute("pageMaker",new PageDTO(cri,123));
 		
 		int total = service.getTotal(cri);
 		
 		log.info("total : " + total);
 		
-		model.addAttribute("pageMaker " , new PageDTO(cri, total));
+		model.addAttribute("pageMaker" , new PageDTO(cri, total));
+		
+		log.info(new PageDTO(cri,total));
 		
 	}
 	@GetMapping("/register")
-	public void register() {
+	public String register() {
 		
+		return "/board/register";
 	}
 	@PostMapping("/register")
 	public String register(BoardVO boardVO , RedirectAttributes rttr) {
@@ -65,7 +71,7 @@ public class BoardController {
 		
 		model.addAttribute("board",service.get(bno));
 		
-		log.info("/get ,modify 성공");
+		log.info("/get ,modify 성공"+service.get(bno));
 	}
 	
 	@PostMapping("/modify") //RedirectAttributes리다이렉트후에도 데이터를 유지랑수 있도록하는인터페이스다

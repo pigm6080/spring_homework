@@ -3,9 +3,11 @@ package org.zerock.domain;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class PageDTO {
 	
 	private int startPage;
@@ -33,6 +35,8 @@ public class PageDTO {
 		this.prev = this.startPage >1;
 		
 		this.next = this.endPage <realEnd;
+		
+	
 	}
 
 }

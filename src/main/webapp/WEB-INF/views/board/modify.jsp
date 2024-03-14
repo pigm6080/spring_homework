@@ -5,12 +5,13 @@
 
 <%@ include file="../includes/header.jsp"%>
 <script type="text/javascript">
+	//form 의 action의 값을 바꿔주는 메소드이다.
     $(document).ready(function() {
         var formObj = $("form");
         
         $('button').on("click", function(e) {
            
-        	e.preventDefault();
+        	e.preventDefault(); 
 
 	            // 버튼의 데이터 속성에서 operation 값을 가져온다.
             var operation = $(this).data("oper");
@@ -20,7 +21,6 @@
                 formObj.attr("action", "/board/remove");
                 
             } else if (operation === 'list') {
-                // 페이지 이동을 위해 window.location 사용합니다.
              	 formObj.attr("action", "/board/list").attr("method", "get");
                 var pageNumTag = $("input[name='pageNum']").clone();
                 var amountTag = $("input[name='amount']").clone();
@@ -30,7 +30,7 @@
              	formObj.append(amountTag);
              	
             }
-
+			//이걸 주석 처리 해야한다. 나중에 주석 뺴고그전에 위에 코드로 인해form post 값이 바뀌는 지 봐야한다. 
             formObj.submit();
         });
     });
@@ -67,9 +67,7 @@
 
 				<div class="form-group">
 					<label>Text area</label>
-					<textarea rows="3" class="form-control" name='content'>
-									<c:out value="${board.content }" />
-								</textarea>
+					<textarea rows="3" class="form-control" name='content'><c:out value="${board.content }" /></textarea>
 				</div>
 
 				<div class="form-group">

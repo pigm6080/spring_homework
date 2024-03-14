@@ -49,9 +49,7 @@ $(document).ready(function(){
 
 				<div class="form-group">
 					<label>Text area</label>
-					<textarea rows="3" class="form-control" name='content'>
-									<c:out value="${board.content }" />
-								</textarea>
+					<textarea rows="3" class="form-control" name='content'><c:out value="${board.content }" /></textarea>
 				</div>
 
 				<div class="form-group">
