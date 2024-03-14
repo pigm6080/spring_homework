@@ -1,0 +1,27 @@
+#mysql 버전임
+
+
+drop table if exists tbl_board;
+
+create table tbl_board(
+    bno int(10) auto_increment primary key,
+    title varchar(200) not null,
+    content varchar(2000) not null,
+    writer varchar(50) not null,
+    regdate datetime default current_timestamp,
+    updatedate datetime default current_timestamp on update current_timestamp
+);
+
+insert into tbl_board(title, content, writer) values('텍스트 제목', '텍스트 내용', 'user00');
+
+insert into tbl_board(title, content, writer)
+select title, content, writer from tbl_board;
+
+select * from tbl_board order by bno;
+
+SELECT * from tbl_board WHERE bno > 0;
+
+SELECT /*+ FULL(tbl_board) */ * FROM tbl_board ORDER BY bno DESC;
+SELECT /*+ FULL(tbl_board) */ * FROM tbl_board WHERE bno BETWEEN 102 and 220 ORDER BY bno DESC;
+
+SELECT /*+ INDEX_ASC(tbl_board pk_board) */ * FROM tbl_board WHERE bno > 0;
