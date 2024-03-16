@@ -3,6 +3,7 @@ package org.zerock.domain;
 import static org.hamcrest.CoreMatchers.nullValue;
 
 import org.apache.wml.WMLStrongElement;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -30,5 +31,19 @@ public class Criteria {
 	public String[] getTypeArr() {
 		 
 		return type == null? new String[] {} : type.split("");
+	}
+	
+	
+	public String getListLink() {
+		
+		UriComponentsBuilder bulier = UriComponentsBuilder.fromPath("")
+				.queryParam("pageNum", this.pageNum)
+				.queryParam("amount", this.getAmount())
+				.queryParam("type", this.getType())
+				.queryParam("keyword", this.getKeyword());
+		
+		return bulier.toUriString();
+				
+				
 	}
 }
